@@ -11,7 +11,7 @@ for s in subfolders:
 
 # Build an index as we go
 index = site / "index.html"
-index.write_text("<h1>UC Python Slides</h1>")
+index.write_text("<h1>UC Python Slides</h1>\n")
 for repo in folder.glob("*"):
     slides_dir = (repo / "slides")
     if not slides_dir.exists():
@@ -19,4 +19,4 @@ for repo in folder.glob("*"):
         continue
     slides_dir.rename(site / repo.name)
     with open(index, 'at') as f:
-        f.write(f'<a href="/{repo.name}">{repo.name}</a>\n')
+        f.write(f'<a href="{repo.name}">{repo.name}</a>\n')
