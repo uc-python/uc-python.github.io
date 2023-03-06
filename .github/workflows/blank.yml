@@ -33,7 +33,12 @@ jobs:
           echo "<h1>hello</h1>" > index.html
           cd ..
       
-      - uses: actions/upload-pages-artifact@v1
+      - name: Build Artifact
+        id: build
+        uses: actions/upload-pages-artifact@v1
         with:
           path: build
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
 
