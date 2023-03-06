@@ -34,7 +34,7 @@ jobs:
           cd ..
           tar czvf nonsense.tar.gz nonsense
       
-      - uses: actions/upload-pages-artifact
+      - uses: actions/upload-pages-artifact@v1
         with:
           name: nonsense.tar.gz
 
