@@ -1,10 +1,19 @@
 import os
-import subprocess
+import shutil
+from subprocess import run, PIPE
+from pathlib import Path
 
 from .repos import repos
 
+folder = Path("repos")
+folder.mkdir(exist_ok=True)
+subfolders = [f for f in folder.glob("*") if f.is_dir()]
+for s in subfolders:
+    print(f"deleting {s}")
+    shutil.rmtree(s)
+
+os.chdir(folder)
 for repo in repos:
-    os.mkdir("repos")
-    os.chdir("repos")
-    subprocess.run(["git", "clone", repo.url], check=True)
-    os.chdir("..")
+    print(f"cloning {repo.name}...")
+    run(["git", "clone", repo.url], check=True, stdout=PIPE, stderr=PIPE)
+    print("done")
