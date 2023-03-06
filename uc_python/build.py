@@ -20,6 +20,6 @@ for repo in repo_paths:
         with open(index, "at") as f:
             f.write("<h1>Slides</h1>\n")
             f.write("<ul>\n")
-            for slide_file in slides_dir.glob("*.html"):
+            for slide_file in slides_dir.glob("*.slides.html"):
                 f.write(f'<li><a href="{slide_file.name}">{slide_file.name}</a></li>\n')
             f.write("</ul>\n")
