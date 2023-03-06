@@ -18,4 +18,5 @@ for repo in folder.glob("*"):
         print(f"no slides in {slides_dir}, skipping")
         continue
     slides_dir.rename(site / repo.name)
-    index.write_text(f'<a href="/{repo.name}">{repo.name}</a>\n')
+    with open(index, 'at') as f:
+        f.write(f'<a href="/{repo.name}">{repo.name}</a>\n')
