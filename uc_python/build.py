@@ -13,4 +13,13 @@ for repo in repo_paths:
     print(f"building slides for {repo.name}...")
     run(["make", "slides"], check=True)
     print("done")
-    print(os.getcwd())
+    slides_dir = folder / repo / "slides"
+    if not (slides_dir / "index.html").exists():
+        print("generating index.html")
+        index = slides_dir / "index.html"
+        with open(index, "at") as f:
+            f.write("<h1>Slides</h1>\n")
+            f.write("<ul>\n")
+            for slide_file in slides_dir.glob("*.html"):
+                f.write(f'<li><a href="{slide_file.name}">{slide_file.name}</a></li>\n')
+            f.write("</ul>\n")
