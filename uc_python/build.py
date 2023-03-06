@@ -9,3 +9,4 @@ for repo in folder.glob("*"):
     print(f"building slides for {repo.name}...")
     run(["make", "slides"], check=True)
     print("done")
+    os.chdir("..")
