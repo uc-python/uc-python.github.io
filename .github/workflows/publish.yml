@@ -35,14 +35,17 @@ jobs:
       - name: Pull
         id: pull
         run: poetry run python -m uc_python.pull
-      - name: Make slides
-        id: make
-      
-      - name: Make slides
+      - name: Build slides
         id: build
+        run: poetry run python -m uc_python.build
+      - name: Create site
+        id: collate
+        run: poetry run python -m uc_python.collate
+      - name: Upload artifact
+        id: upload
         uses: actions/upload-pages-artifact@v1
         with:
-          path: build
+          path: site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
