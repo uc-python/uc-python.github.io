@@ -21,18 +21,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: "3.11"
-      - uses: Gr1N/setup-poetry@v8
+      - name: Set up Poetry
+        uses: Gr1N/setup-poetry@v8
         with:
           poetry-version: "1.3.2"
       - name: Install package
         run: poetry install
 
-
-      - name: Pull
+      - name: Pull repos
         id: pull
         run: poetry run python -m uc_python.pull
       - name: Build slides
