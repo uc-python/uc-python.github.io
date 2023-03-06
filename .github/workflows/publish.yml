@@ -28,13 +28,17 @@ jobs:
       # Runs a single command using the runners shell
       - name: do it all
         run: |
-          mkdir nonsense
-          cd nonsense
+          mkdir build
+          cd build
           echo "<h1>hello</h1>" > index.html
           cd ..
-          tar czvf nonsense.tar.gz nonsense
       
-      - uses: actions/upload-pages-artifact@v1
+      - name: Build Artifact
+        id: build
+        uses: actions/upload-pages-artifact@v1
         with:
-          name: nonsense.tar.gz
+          path: build
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
 
